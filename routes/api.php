@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/paginate-users', function (Request $request) {
+
+    $users = \App\Models\User::paginate(10);
+
+    return response()->json($users);
+    
+})->middleware('auth:api');
